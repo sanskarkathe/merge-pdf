@@ -1,0 +1,40 @@
+#Install PyPDF2 library before running the code. 
+#You can install it via pip by running pip install PyPDF2 in your terminal or command prompt.
+
+import PyPDF2
+
+# Open the PDF files you want to merge
+pdf1 = open('file1.pdf', 'rb')
+pdf2 = open('file2.pdf', 'rb')
+
+# Create PdfReader objects for each PDF file
+pdf1_reader = PyPDF2.PdfReader(pdf1)
+pdf2_reader = PyPDF2.PdfReader(pdf2)
+
+# Create a new PdfWriter object to hold the merged PDF
+pdf_writer = PyPDF2.PdfWriter()
+
+# Add all the pages of the first PDF file to the writer object
+for page_num in range(len(pdf1_reader.pages)):
+    page = pdf1_reader.pages[page_num]
+    pdf_writer.add_page(page)
+
+# Add all the pages of the second PDF file to the writer object
+for page_num in range(len(pdf2_reader.pages)):
+    page = pdf2_reader.pages[page_num]
+    pdf_writer.add_page(page)
+
+# Save the merged PDF to a file
+with open('merged.pdf', 'wb') as output_file:
+    pdf_writer.write(output_file)
+
+# Close the PDF files
+pdf1.close()
+pdf2.close()
+
+#make sure to replace the file names and paths with your own PDF files. Let me know if you have any further questions or issues.
+
+
+
+
+
